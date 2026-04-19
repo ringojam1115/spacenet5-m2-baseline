@@ -5,10 +5,10 @@ import torch
 from pathlib import Path
 
 class SpaceNetDataset:
-    def __init__(self, rgb_dir, mask_dir, crop_size=256, arguments=False) -> None:
+    def __init__(self, rgb_dir, mask_dir, crop_size=256, augment=False) -> None:
         # Initialize the dataset with the directories for RGB images and masks, and the desired crop size
         self.crop_size = crop_size
-        self.arguments = arguments
+        self.augment = augment
 
         rgb_dir = Path(rgb_dir)
         mask_dir = Path(mask_dir)
@@ -53,8 +53,8 @@ class SpaceNetDataset:
         image = torch.from_numpy(image)  # (3, 256, 256)
         mask  = torch.from_numpy(mask)   # (8, 256, 256)
 
-        # ⑤ 左右反転 (arguments=True のときだけ)
-        if self.arguments and random.random() < 0.5:
+        # ⑤ 左右反転 (augment=True のときだけ)
+        if self.augment and random.random() < 0.5:
             image = torch.flip(image, dims=[2])  # 横方向に反転
             mask  = torch.flip(mask, dims=[1])   # 横方向に反転
 
