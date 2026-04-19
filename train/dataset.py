@@ -5,7 +5,7 @@ import torch
 from pathlib import Path
 
 class SpaceNetDataset:
-    def __init__(self, rgb_dir, mask_dir, crop_size=256, arguments=False):
+    def __init__(self, rgb_dir, mask_dir, crop_size=256, arguments=False) -> None:
         # Initialize the dataset with the directories for RGB images and masks, and the desired crop size
         self.crop_size = crop_size
         self.arguments = arguments
@@ -20,11 +20,11 @@ class SpaceNetDataset:
             if mask_path.exists():
                 self.pairs.append((rgb_path, mask_path))
 
-    def __len__(self):
+    def __len__(self) -> int:
         # Return the number of samples in the dataset
         return len(self.pairs)
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx) -> tuple[torch.Tensor, torch.Tensor]:
         # Return a single sample from the dataset at the given index
         rgb_path, mask_path = self.pairs[idx]
 
