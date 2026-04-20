@@ -12,7 +12,7 @@ RGB_DIR  = Path("data/raw/AOI_7_Moscow/PS-RGB")
 OUT_DIR  = Path("results/predictions")
 WEIGHTS  = Path("results/best_model.pth")
 
-def predict():
+def predict() -> None:
     # 1. モデルを読み込む
     model = build_model()
     model.load_state_dict(torch.load("results/best_model.pth", map_location="mps", weights_only=True))
