@@ -36,6 +36,10 @@ wandb/
 .env
 *.env
 
+# 個人メモ・下書き
+BLOG_DRAFT.md
+NEXT_SESSION_PROMPT.md
+
 # macOS
 .DS_Store
 
